@@ -3,7 +3,7 @@ import { ArrowRight, Globe, Wifi, Battery, Lock } from "lucide-react";
 import Vid from "./hero1.mp4";
  import Vid23 from './gold.mp4';
 import Vid2 from "./20svideo.mp4";
-import video3 from "./Timeline.mp4";
+import video3 from "./Timeline1024.mp4";
 
 
 const HeroSection = () => {
