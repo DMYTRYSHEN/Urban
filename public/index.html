@@ -15,6 +15,7 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+   
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -25,10 +26,68 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      .gallery-top .swiper-slide {
+          height: fit-content;
+          margin-right: 0px;
+      }
+      .swiper-wrapper{  
+        
+    }
+    .gallery-top .swiper-slide-active {
+      transform: scale(1.1);
+    }      
+  .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after,
+  .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after{
+      content: ' ';
+  }
+  .swiper-button-next svg, .swiper-button-prev svg{
+      width: 20px;
+      height: 20px;
+  }
+  .swiper-button-next, .swiper-button-prev{
+    
+    margin-top: 1px;
+  }
+  .swiper-button-prev, .swiper-rtl .swiper-button-next {
+      left: auto;
+  }
+  .swiper-button-next, .swiper-rtl .swiper-button-prev {
+      right: 10;
+  }
+  
+  .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
+    bottom: var(--swiper-pagination-bottom,px);
+    z-index: 10;
+    color: transparent;
+    left: 14px;
+  }
+  .swiper-pagination-current{
+    color: black;
+  }
+  .gallery-top .swiper-slide .swiper-box {
+    opacity: 0;
+    transform: scale(1);
+  }
+  .gallery-top .swiper-slide-active .swiper-box {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  @media (max-width: 1920px){
+    .gallery-top .swiper-slide-active .swiper-box{
+      opacity: 1;
+    }
+  } 
+  
+   </style>
+    
   </head>
   <body>
+    
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+        
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -39,5 +98,54 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      $(document).ready(function() {
+        // Assign some jquery elements we'll need
+        var $swiper = $(".gallery-top");
+        var $bottomSlide = null; // Slide whose content gets 'extracted' and placed
+        // into a fixed position for animation purposes
+        var $bottomSlideContent = null; // Slide content that gets passed between the
+        // panning slide stack and the position 'behind'
+        // the stack, needed for correct animation style
+      
+        var mySwiper = new Swiper(".gallery-top", {
+          spaceBetween: 20,
+          slidesPerView: 3,
+          parallax: true,
+          centeredSlides: true,
+          loop: true,
+          autoplay: true,
+          autoplaySpeed: 20,
+          slideToClickedSlide: true,
+          paginationClickable: true,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+          },
+          breakpoints: {
+               1920: {
+                slidesPerView: 3,
+                 spaceBetween: 20,
+               },
+               1400: {
+                 slidesPerView: 3,
+                 spaceBetween: 20,
+                 centeredSlides: true
+               },
+               900: {
+                 slidesPerView: 3,
+                 spaceBetween: 15,
+                 centeredSlides: true
+               },
+               200: {
+                 slidesPerView: 2,
+                 spaceBetween: 15
+               }
+          },
+        });
+      });
+      
+        </script>
   </body>
+  
 </html>
